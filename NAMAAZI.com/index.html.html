@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAMAAZI</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* =============================================
+     NAMAAZI STORE — GLOBAL VARIABLES & RESET
+     ============================================= */
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --off-white: #fafaf8;
+    --sand: #f2ede4;
+    --clay: #c8a882;
+    --clay-dark: #9a7a5a;
+    --charcoal: #3a3530;
+    --text-muted: #888580;
+    --border: #e8e3db;
+    --nav-height: 72px;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --radius: 2px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: var(--font-body); cursor: pointer; border: none; background: none; }
+
+  /* =============================================
+     ANNOUNCEMENT BAR
+     ============================================= */
+  .announcement {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* =============================================
+     NAVIGATION
+     ============================================= */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+    gap: 32px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    margin-right: auto;
+  }
+  .nav-logo span { color: var(--clay); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--charcoal);
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--clay); }
+  .nav-actions { display: flex; gap: 20px; align-items: center; }
+  .cart-btn {
+    position: relative;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    background: var(--black);
+    color: var(--white);
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    transition: background 0.2s;
+  }
+  .cart-btn:hover { background: var(--clay-dark); }
+  .cart-count {
+    position: absolute;
+    top: -6px; right: -6px;
+    background: var(--clay);
+    color: var(--white);
+    border-radius: 50%;
+    width: 18px; height: 18px;
+    font-size: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+  }
+  .search-box {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 14px;
+    font-size: 13px;
+    font-family: var(--font-body);
+    outline: none;
+    width: 200px;
+    transition: border-color 0.2s;
+  }
+  .search-box:focus { border-color: var(--clay); }
+
+  /* =============================================
+     HERO SECTION
+     ============================================= */
+  .hero {
+    background: var(--sand);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 480px;
+    overflow: hidden;
+  }
+  .hero-text {
+    padding: 72px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 56px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+  .hero-title em { color: var(--clay); font-style: italic; }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--charcoal);
+    max-width: 380px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--black);
+    color: var(--white);
+    padding: 14px 32px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: var(--radius);
+    transition: background 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: var(--font-body);
+    width: fit-content;
+  }
+  .hero-cta:hover { background: var(--clay-dark); }
+  .hero-visual {
+    background: linear-gradient(135deg, #e8ddd0 0%, #d4c4b0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 140px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    width: 320px; height: 320px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* =============================================
+     CATEGORY FILTER BAR
+     ============================================= */
+  .filter-section {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filter-btn {
+    padding: 18px 24px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+    background: none;
+    border-radius: 0;
+  }
+  .filter-btn:hover { color: var(--black); }
+  .filter-btn.active {
+    color: var(--black);
+    border-bottom-color: var(--black);
+  }
+  .results-count {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    padding: 0 8px;
+  }
+
+  /* =============================================
+     PRODUCT GRID
+     ============================================= */
+  .store-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 48px 48px 80px;
+  }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+  .section-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 32px 24px;
+  }
+
+  /* =============================================
+     PRODUCT CARD
+     ============================================= */
+  .product-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .product-card:hover { transform: translateY(-4px); }
+  .product-card.hidden { display: none; }
+
+  .product-image {
+    /* ─── EASY TO EDIT: Image area ───
+       Replace the emoji in data-emoji attribute on each card.
+       When you add real images, swap the .product-img-inner div
+       for an <img src="your-image.jpg" alt="..." /> tag.
+       The container below ensures no padding/border/background. */
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 96px;
+    overflow: hidden;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .product-img-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .product-info { padding: 14px 0 0; }
+  .product-category-tag {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--clay);
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  .product-name {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .product-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .product-price {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black);
+  }
+  .add-btn {
+    background: var(--black);
+    color: var(--white);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: var(--radius);
+    transition: background 0.2s;
+    font-family: var(--font-body);
+    border: none;
+    cursor: pointer;
+  }
+  .add-btn:hover { background: var(--clay-dark); }
+
+  /* =============================================
+     CATEGORY SECTION HEADERS
+     ============================================= */
+  .category-divider {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0 8px;
+    margin-top: 16px;
+  }
+  .category-divider:first-child { margin-top: 0; padding-top: 0; }
+  .cat-label {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--black);
+  }
+  .cat-label-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .cat-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* =============================================
+     TOAST NOTIFICATION
+     ============================================= */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--black);
+    color: var(--white);
+    padding: 14px 24px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 999;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* =============================================
+     FOOTER
+     ============================================= */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 56px 48px 32px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .footer-logo span { color: var(--clay); }
+  .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .footer-col h4 {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* =============================================
+     NO RESULTS STATE
+     ============================================= */
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-muted);
+    display: none;
+  }
+  .no-results.show { display: block; }
+  .no-results-icon { font-size: 48px; margin-bottom: 16px; }
+  .no-results h3 { font-family: var(--font-display); font-size: 22px; margin-bottom: 8px; color: var(--black); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .hero-text { padding: 48px 24px; }
+    .hero-title { font-size: 40px; }
+    .filter-section { padding: 0 24px; }
+    .store-section { padding: 32px 24px 60px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .search-box { width: 140px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
+    .product-image { font-size: 64px; }
+    footer { padding: 40px 24px 24px; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     HOW TO EDIT PRODUCTS
+     ════════════════════════════════════════════
+     Each product is a <div class="product-card"> inside #product-grid.
+     To ADD a product: copy any product-card block and paste it.
+     To REMOVE a product: delete the entire product-card block.
+     To change EMOJI: update the text inside <div class="product-img-inner">
+     To swap in a REAL IMAGE: replace <div class="product-img-inner">🏷️</div>
+       with: <img src="your-image.jpg" alt="Product Name" style="width:100%;height:100%;object-fit:cover;">
+     Product fields to update per card:
+       - data-category: "men" | "women" | "kids" | "accessories"
+       - data-name: product name (used for search)
+       - .product-category-tag: short label shown on card
+       - .product-name: full product name
+       - .product-desc: short description
+       - .product-price: price string
+     ════════════════════════════════════════════ -->
+
+<div class="announcement">Free Shipping on Orders Above ₹1499 &nbsp;|&nbsp; New Arrivals Weekly &nbsp;|&nbsp; Use Code NAMAAZI10 for 10% Off</div>
+
+<nav>
+  <div class="nav-logo">NAMAAZI</div>
+  <div class="nav-links">
+    <a onclick="filterProducts('all')" class="active" id="nav-all">All</a>
+    <a onclick="filterProducts('men')" id="nav-men">Men</a>
+    <a onclick="filterProducts('women')" id="nav-women">Women</a>
+    <a onclick="filterProducts('kids')" id="nav-kids">Kids</a>
+    <a onclick="filterProducts('accessories')" id="nav-accessories">Accessories</a>
+  </div>
+  <input class="search-box" type="text" placeholder="Search products..." id="searchInput" oninput="handleSearch(this.value)">
+  <button class="cart-btn" onclick="showCart()">
+    Cart <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">New Collection · 2025</p>
+    <h1 class="hero-title">Wear Your<br><em>Heritage.</em></h1>
+    <p class="hero-sub">NAMAAZI is the best clothing brand in the world with contemporary craftsmanship — clothing your family will love to wear every day.</p>
+    <button class="hero-cta" onclick="filterProducts('all')">Shop the Collection →</button>
+  </div>
+  <div class="hero-visual">👘</div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-section">
+  <button class="filter-btn active" onclick="filterProducts('all')" data-filter="all">All Products</button>
+  <button class="filter-btn" onclick="filterProducts('men')" data-filter="men">Men</button>
+  <button class="filter-btn" onclick="filterProducts('women')" data-filter="women">Women</button>
+  <button class="filter-btn" onclick="filterProducts('kids')" data-filter="kids">Kids</button>
+  <button class="filter-btn" onclick="filterProducts('accessories')" data-filter="accessories">Accessories</button>
+  <span class="results-count" id="resultsCount">50 products</span>
+</div>
+
+<!-- PRODUCT GRID -->
+<main class="store-section">
+  <div class="product-grid" id="product-grid">
+
+    <!-- ══════════════ MEN'S SECTION ══════════════ -->
+    <div class="category-divider" data-section="men">
+      <span class="cat-label">Men</span>
+      <span class="cat-label-line"></span>
+      <span class="cat-count">18 pieces</span>
+    </div>
+
+    <!-- PRODUCT 1 -->
+    <div class="product-card" data-category="men" data-name="classic kurta ivory">
+      <div class="product-image">
+        <div class="product-img-inner">👔</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Kurta</p>
+        <h3 class="product-name">Classic Ivory Kurta</h3>
+        <p class="product-desc">Pure cotton, straight-cut. Perfect for daily wear or casual gatherings.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,299</span>
+          <button class="add-btn" onclick="addToCart('Classic Ivory Kurta', '₹1,299', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="product-card" data-category="men" data-name="sherwani navy wedding">
+      <div class="product-image">
+        <div class="product-img-inner">🤵</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Sherwani</p>
+        <h3 class="product-name">Royal Navy Sherwani</h3>
+        <p class="product-desc">Embroidered collar, slim-fit silhouette. Wedding & festive events.</p>
+        <div class="product-footer">
+          <span class="product-price">₹5,499</span>
+          <button class="add-btn" onclick="addToCart('Royal Navy Sherwani', '₹5,499', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 3 -->
+    <div class="product-card" data-category="men" data-name="pathani suit white prayer">
+      <div class="product-image">
+        <div class="product-img-inner">🕌</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Pathani</p>
+        <h3 class="product-name">White Pathani Suit</h3>
+        <p class="product-desc">Breathable cotton-blend. Ideal for Friday prayers and Eid celebrations.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,799</span>
+          <button class="add-btn" onclick="addToCart('White Pathani Suit', '₹1,799', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 4 -->
+    <div class="product-card" data-category="men" data-name="linen kurta pyjama sage">
+      <div class="product-image">
+        <div class="product-img-inner">👕</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Kurta Set</p>
+        <h3 class="product-name">Sage Linen Kurta-Pyjama</h3>
+        <p class="product-desc">100% linen set in earthy sage green. Light and breezy for warm days.</p>
+        <div class="product-footer">
+          <span class="product-price">₹2,199</span>
+          <button class="add-btn" onclick="addToCart('Sage Linen Kurta-Pyjama', '₹2,199', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card" data-category="men" data-name="nehru jacket indigo">
+      <div class="product-image">
+        <div class="product-img-inner">🧥</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Jacket</p>
+        <h3 class="product-name">Indigo Nehru Jacket</h3>
+        <p class="product-desc">Band collar, textured fabric. Layer over a kurta or dress shirt.</p>
+        <div class="product-footer">
+          <span class="product-price">₹2,899</span>
+          <button class="add-btn" onclick="addToCart('Indigo Nehru Jacket', '₹2,899', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 6 -->
+    <div class="product-card" data-category="men" data-name="cotton pyjama off white">
+      <div class="product-image">
+        <div class="product-img-inner">👖</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Bottoms</p>
+        <h3 class="product-name">Off-White Cotton Pyjama</h3>
+        <p class="product-desc">Elasticated waist, tapered leg. Pairs with any kurta in our range.</p>
+        <div class="product-footer">
+          <span class="product-price">₹699</span>
+          <button class="add-btn" onclick="addToCart('Off-White Cotton Pyjama', '₹699', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 7 -->
+    <div class="product-card" data-category="men" data-name="bandhgala suit charcoal">
+      <div class="product-image">
+        <div class="product-img-inner">🎩</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Suit</p>
+        <h3 class="product-name">Charcoal Bandhgala Suit</h3>
+        <p class="product-desc">Mandarin collar, full suit set. Sophisticated heritage tailoring.</p>
+        <div class="product-footer">
+          <span class="product-price">₹6,999</span>
+          <button class="add-btn" onclick="addToCart('Charcoal Bandhgala Suit', '₹6,999', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 8 -->
+    <div class="product-card" data-category="men" data-name="cotton kurta slate grey">
+      <div class="product-image">
+        <div class="product-img-inner">🔵</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Kurta</p>
+        <h3 class="product-name">Slate Grey Kurta</h3>
+        <p class="product-desc">Mandarin collar, side slits. Slim cut for a modern silhouette.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,499</span>
+          <button class="add-btn" onclick="addToCart('Slate Grey Kurta', '₹1,499', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 9 -->
+    <div class="product-card" data-category="men" data-name="dhoti pant off white formal">
+      <div class="product-image">
+        <div class="product-img-inner">🪴</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Bottoms</p>
+        <h3 class="product-name">Ivory Dhoti Pants</h3>
+        <p class="product-desc">Contemporary dhoti-inspired silhouette. Easy to style, comfortable all day.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,199</span>
+          <button class="add-btn" onclick="addToCart('Ivory Dhoti Pants', '₹1,199', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 10 -->
+    <div class="product-card" data-category="men" data-name="embroidered kurta maroon celebration">
+      <div class="product-image">
+        <div class="product-img-inner">🌹</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Festive</p>
+        <h3 class="product-name">Maroon Embroidered Kurta</h3>
+        <p class="product-desc">Chikankari work on yoke. Rich maroon colour for celebrations.</p>
+        <div class="product-footer">
+          <span class="product-price">₹3,299</span>
+          <button class="add-btn" onclick="addToCart('Maroon Embroidered Kurta', '₹3,299', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 11 -->
+    <div class="product-card" data-category="men" data-name="half sleeve kurta summer">
+      <div class="product-image">
+        <div class="product-img-inner">☀️</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Summer</p>
+        <h3 class="product-name">Mango Half-Sleeve Kurta</h3>
+        <p class="product-desc">Seersucker cotton, half sleeves. The summer essential from NAMAAZI</p>
+        <div class="product-footer">
+          <span class="product-price">₹999</span>
+          <button class="add-btn" onclick="addToCart('Mango Half-Sleeve Kurta', '₹999', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 12 -->
+    <div class="product-card" data-category="men" data-name="men waistcoat embroidered gold festive">
+      <div class="product-image">
+        <div class="product-img-inner">✨</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Festive</p>
+        <h3 class="product-name">Gold Embroidered Waistcoat</h3>
+        <p class="product-desc">Zari embroidery, button front. Instantly elevates any kurta outfit.</p>
+        <div class="product-footer">
+          <span class="product-price">₹2,499</span>
+          <button class="add-btn" onclick="addToCart('Gold Embroidered Waistcoat', '₹2,499', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 13 -->
+    <div class="product-card" data-category="men" data-name="men prayer topi cap white">
+      <div class="product-image">
+        <div class="product-img-inner">🕌</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Prayerwear</p>
+        <h3 class="product-name">Crocheted Prayer Topi</h3>
+        <p class="product-desc">Handcrafted white cap. Traditional and breathable for extended use.</p>
+        <div class="product-footer">
+          <span class="product-price">₹349</span>
+          <button class="add-btn" onclick="addToCart('Crocheted Prayer Topi', '₹349', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 14 -->
+    <div class="product-card" data-category="men" data-name="men cotton salwar charcoal bottoms">
+      <div class="product-image">
+        <div class="product-img-inner">🩱</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Bottoms</p>
+        <h3 class="product-name">Charcoal Salwar</h3>
+        <p class="product-desc">Relaxed-fit, drawstring waist. Versatile pairing for all kurtas.</p>
+        <div class="product-footer">
+          <span class="product-price">₹799</span>
+          <button class="add-btn" onclick="addToCart('Charcoal Salwar', '₹799', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 15 -->
+    <div class="product-card" data-category="men" data-name="silk kurta wedding occasion deep blue">
+      <div class="product-image">
+        <div class="product-img-inner">💎</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Occasion</p>
+        <h3 class="product-name">Deep Blue Silk Kurta</h3>
+        <p class="product-desc">Pure silk, subtle sheen. Statement piece for weddings and Eid.</p>
+        <div class="product-footer">
+          <span class="product-price">₹4,199</span>
+          <button class="add-btn" onclick="addToCart('Deep Blue Silk Kurta', '₹4,199', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 16 -->
+    <div class="product-card" data-category="men" data-name="men floral kurta print summer casual">
+      <div class="product-image">
+        <div class="product-img-inner">🌺</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Casual</p>
+        <h3 class="product-name">Floral Block-Print Kurta</h3>
+        <p class="product-desc">Hand block print on cotton. Fresh and artistic for everyday style.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,699</span>
+          <button class="add-btn" onclick="addToCart('Floral Block-Print Kurta', '₹1,699', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 17 -->
+    <div class="product-card" data-category="men" data-name="men winter wool shawl grey wrap">
+      <div class="product-image">
+        <div class="product-img-inner">🧣</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Winter</p>
+        <h3 class="product-name">Heritage Wool Shawl</h3>
+        <p class="product-desc">Pure Merino wool, checked pattern. Warm and elegant for winter.</p>
+        <div class="product-footer">
+          <span class="product-price">₹2,999</span>
+          <button class="add-btn" onclick="addToCart('Heritage Wool Shawl', '₹2,999', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 18 -->
+    <div class="product-card" data-category="men" data-name="men achkan kurta floor length festive">
+      <div class="product-image">
+        <div class="product-img-inner">🏵️</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Men · Festive</p>
+        <h3 class="product-name">Ivory Achkan Kurta</h3>
+        <p class="product-desc">Floor-length, button down front. Grand festive presence for special occasions.</p>
+        <div class="product-footer">
+          <span class="product-price">₹4,799</span>
+          <button class="add-btn" onclick="addToCart('Ivory Achkan Kurta', '₹4,799', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ WOMEN'S SECTION ══════════════ -->
+    <div class="category-divider" data-section="women">
+      <span class="cat-label">Women</span>
+      <span class="cat-label-line"></span>
+      <span class="cat-count">18 pieces</span>
+    </div>
+
+    <!-- PRODUCT 19 -->
+    <div class="product-card" data-category="women" data-name="women anarkali suit rose gold">
+      <div class="product-image">
+        <div class="product-img-inner">👗</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Anarkali</p>
+        <h3 class="product-name">Rose Gold Anarkali Suit</h3>
+        <p class="product-desc">Flared silhouette, embellished border. Grace for every celebration.</p>
+        <div class="product-footer">
+          <span class="product-price">₹3,999</span>
+          <button class="add-btn" onclick="addToCart('Rose Gold Anarkali Suit', '₹3,999', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 20 -->
+    <div class="product-card" data-category="women" data-name="women salwar kameez cotton aqua daily">
+      <div class="product-image">
+        <div class="product-img-inner">💐</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Salwar Set</p>
+        <h3 class="product-name">Aqua Cotton Salwar Set</h3>
+        <p class="product-desc">Breathable cotton, straight-cut kameez with matching dupatta.</p>
+        <div class="product-footer">
+          <span class="product-price">₹2,199</span>
+          <button class="add-btn" onclick="addToCart('Aqua Cotton Salwar Set', '₹2,199', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 21 -->
+    <div class="product-card" data-category="women" data-name="women abaya black modest">
+      <div class="product-image">
+        <div class="product-img-inner">🖤</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Abaya</p>
+        <h3 class="product-name">Classic Black Abaya</h3>
+        <p class="product-desc">Open-front crepe abaya. Modest, flowy, and effortlessly elegant.</p>
+        <div class="product-footer">
+          <span class="product-price">₹2,799</span>
+          <button class="add-btn" onclick="addToCart('Classic Black Abaya', '₹2,799', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 22 -->
+    <div class="product-card" data-category="women" data-name="women lehenga choli embroidered wedding pink">
+      <div class="product-image">
+        <div class="product-img-inner">🌸</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Lehenga</p>
+        <h3 class="product-name">Blush Pink Embroidered Lehenga</h3>
+        <p class="product-desc">Silk lehenga with zardozi choli. Bridal & wedding guest perfection.</p>
+        <div class="product-footer">
+          <span class="product-price">₹8,999</span>
+          <button class="add-btn" onclick="addToCart('Blush Pink Embroidered Lehenga', '₹8,999', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 23 -->
+    <div class="product-card" data-category="women" data-name="women kurti printed everyday casual">
+      <div class="product-image">
+        <div class="product-img-inner">🌷</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Kurti</p>
+        <h3 class="product-name">Printed Everyday Kurti</h3>
+        <p class="product-desc">Digital floral print on rayon. Perfect for work or casual outings.</p>
+        <div class="product-footer">
+          <span class="product-price">₹899</span>
+          <button class="add-btn" onclick="addToCart('Printed Everyday Kurti', '₹899', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 24 -->
+    <div class="product-card" data-category="women" data-name="women hijab chiffon neutral">
+      <div class="product-image">
+        <div class="product-img-inner">🌿</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Hijab</p>
+        <h3 class="product-name">Chiffon Everyday Hijab</h3>
+        <p class="product-desc">Lightweight chiffon in neutral tones. Stays in place all day.</p>
+        <div class="product-footer">
+          <span class="product-price">₹399</span>
+          <button class="add-btn" onclick="addToCart('Chiffon Everyday Hijab', '₹399', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 25 -->
+    <div class="product-card" data-category="women" data-name="women palazzo pants wide leg printed">
+      <div class="product-image">
+        <div class="product-img-inner">🦋</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Bottoms</p>
+        <h3 class="product-name">Butterfly Print Palazzo</h3>
+        <p class="product-desc">Wide-leg palazzo in georgette. Pairs with kurtis or fitted tops.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,099</span>
+          <button class="add-btn" onclick="addToCart('Butterfly Print Palazzo', '₹1,099', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 26 -->
+    <div class="product-card" data-category="women" data-name="women kaftan dress maxi summer">
+      <div class="product-image">
+        <div class="product-img-inner">🌊</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Kaftan</p>
+        <h3 class="product-name">Ocean Blue Maxi Kaftan</h3>
+        <p class="product-desc">Free-flowing kaftan dress. Relaxed fit for lounging or travel days.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,799</span>
+          <button class="add-btn" onclick="addToCart('Ocean Blue Maxi Kaftan', '₹1,799', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 27 -->
+    <div class="product-card" data-category="women" data-name="women dupatta silk embroidered stole">
+      <div class="product-image">
+        <div class="product-img-inner">🎀</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Dupatta</p>
+        <h3 class="product-name">Silk Embroidered Dupatta</h3>
+        <p class="product-desc">Bandhani-print silk, gold border. A versatile must-have accessory.</p>
+        <div class="product-footer">
+          <span class="product-price">₹799</span>
+          <button class="add-btn" onclick="addToCart('Silk Embroidered Dupatta', '₹799', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 28 -->
+    <div class="product-card" data-category="women" data-name="women gharara set embroidered festive">
+      <div class="product-image">
+        <div class="product-img-inner">💫</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Gharara</p>
+        <h3 class="product-name">Festive Gharara Set</h3>
+        <p class="product-desc">Flared gharara trousers with embroidered kurti. Timeless elegance.</p>
+        <div class="product-footer">
+          <span class="product-price">₹5,299</span>
+          <button class="add-btn" onclick="addToCart('Festive Gharara Set', '₹5,299', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 29 -->
+    <div class="product-card" data-category="women" data-name="women sharara set flared trousers">
+      <div class="product-image">
+        <div class="product-img-inner">🌙</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Sharara</p>
+        <h3 class="product-name">Midnight Sharara Set</h3>
+        <p class="product-desc">Navy blue with silver thread work. Stunning for evening events.</p>
+        <div class="product-footer">
+          <span class="product-price">₹4,499</span>
+          <button class="add-btn" onclick="addToCart('Midnight Sharara Set', '₹4,499', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 30 -->
+    <div class="product-card" data-category="women" data-name="women cotton salwar loose pants everyday">
+      <div class="product-image">
+        <div class="product-img-inner">🪷</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Bottoms</p>
+        <h3 class="product-name">Lotus Pink Salwar</h3>
+        <p class="product-desc">Relaxed-fit cotton salwar. Everyday comfort in a beautiful pink hue.</p>
+        <div class="product-footer">
+          <span class="product-price">₹699</span>
+          <button class="add-btn" onclick="addToCart('Lotus Pink Salwar', '₹699', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 31 -->
+    <div class="product-card" data-category="women" data-name="women abaya embroidered prayer occasion">
+      <div class="product-image">
+        <div class="product-img-inner">🌟</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Abaya</p>
+        <h3 class="product-name">Embroidered Occasion Abaya</h3>
+        <p class="product-desc">Cuff embroidery, closed-front design. Prayerwear meets festive style.</p>
+        <div class="product-footer">
+          <span class="product-price">₹3,499</span>
+          <button class="add-btn" onclick="addToCart('Embroidered Occasion Abaya', '₹3,499', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 32 -->
+    <div class="product-card" data-category="women" data-name="women kurti long tunic straight cut">
+      <div class="product-image">
+        <div class="product-img-inner">🫧</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Kurti</p>
+        <h3 class="product-name">Long Tunic Kurti</h3>
+        <p class="product-desc">Straight-cut, mid-calf length. Wear with jeans or palazzos.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,199</span>
+          <button class="add-btn" onclick="addToCart('Long Tunic Kurti', '₹1,199', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 33 -->
+    <div class="product-card" data-category="women" data-name="women patiala salwar peach colourful">
+      <div class="product-image">
+        <div class="product-img-inner">🍑</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Bottoms</p>
+        <h3 class="product-name">Peach Patiala Salwar</h3>
+        <p class="product-desc">Classic voluminous Patiala style in soft peach. Ultra-comfortable.</p>
+        <div class="product-footer">
+          <span class="product-price">₹849</span>
+          <button class="add-btn" onclick="addToCart('Peach Patiala Salwar', '₹849', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 34 -->
+    <div class="product-card" data-category="women" data-name="women winter cardigan embroidered kashmiri">
+      <div class="product-image">
+        <div class="product-img-inner">❄️</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Winter</p>
+        <h3 class="product-name">Kashmiri Embroidered Cardigan</h3>
+        <p class="product-desc">Wool cardigan with traditional Kashmiri embroidery. Cosy and beautiful.</p>
+        <div class="product-footer">
+          <span class="product-price">₹3,799</span>
+          <button class="add-btn" onclick="addToCart('Kashmiri Embroidered Cardigan', '₹3,799', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 35 -->
+    <div class="product-card" data-category="women" data-name="women organza saree pastel bridal">
+      <div class="product-image">
+        <div class="product-img-inner">🎐</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Saree</p>
+        <h3 class="product-name">Pastel Organza Saree</h3>
+        <p class="product-desc">Sheer organza with hand-painted motifs. Ethereal for special occasions.</p>
+        <div class="product-footer">
+          <span class="product-price">₹6,499</span>
+          <button class="add-btn" onclick="addToCart('Pastel Organza Saree', '₹6,499', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 36 -->
+    <div class="product-card" data-category="women" data-name="women phiran wool winter kashmiri dress">
+      <div class="product-image">
+        <div class="product-img-inner">🏔️</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Women · Winter</p>
+        <h3 class="product-name">Wool Phiran Dress</h3>
+        <p class="product-desc">Traditional Kashmiri phiran in soft wool. Ideal for cold winters.</p>
+        <div class="product-footer">
+          <span class="product-price">₹4,199</span>
+          <button class="add-btn" onclick="addToCart('Wool Phiran Dress', '₹4,199', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ KIDS' SECTION ══════════════ -->
+    <div class="category-divider" data-section="kids">
+      <span class="cat-label">Kids</span>
+      <span class="cat-label-line"></span>
+      <span class="cat-count">9 pieces</span>
+    </div>
+
+    <!-- PRODUCT 37 -->
+    <div class="product-card" data-category="kids" data-name="kids boys kurta pyjama cream eid">
+      <div class="product-image">
+        <div class="product-img-inner">🧒</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Kids Boys · Kurta Set</p>
+        <h3 class="product-name">Cream Eid Kurta-Pyjama Set</h3>
+        <p class="product-desc">Soft cotton, embroidered neck. Perfect for Eid or festive occasions.</p>
+        <div class="product-footer">
+          <span class="product-price">₹999</span>
+          <button class="add-btn" onclick="addToCart('Cream Eid Kurta-Pyjama Set', '₹999', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 38 -->
+    <div class="product-card" data-category="kids" data-name="kids girls salwar kameez embroidered pink">
+      <div class="product-image">
+        <div class="product-img-inner">👧</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Kids Girls · Salwar Set</p>
+        <h3 class="product-name">Pink Embroidered Salwar Set</h3>
+        <p class="product-desc">Light cotton, sequin accents. Girls' festive outfit — age 3–12.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,299</span>
+          <button class="add-btn" onclick="addToCart('Pink Embroidered Salwar Set', '₹1,299', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 39 -->
+    <div class="product-card" data-category="kids" data-name="kids boys sherwani jacket wedding set">
+      <div class="product-image">
+        <div class="product-img-inner">👦</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Kids Boys · Sherwani</p>
+        <h3 class="product-name">Mini Sherwani & Jacket Set</h3>
+        <p class="product-desc">Full sherwani set for boys. Adorable for weddings and Eid — age 2–10.</p>
+        <div class="product-footer">
+          <span class="product-price">₹2,499</span>
+          <button class="add-btn" onclick="addToCart('Mini Sherwani & Jacket Set', '₹2,499', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 40 -->
+    <div class="product-card" data-category="kids" data-name="kids girls anarkali dress celebration">
+      <div class="product-image">
+        <div class="product-img-inner">🌼</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Kids Girls · Anarkali</p>
+        <h3 class="product-name">Sunflower Anarkali Dress</h3>
+        <p class="product-desc">Flared anarkali in yellow chiffon. Fun, festive, and twirl-worthy.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,599</span>
+          <button class="add-btn" onclick="addToCart('Sunflower Anarkali Dress', '₹1,599', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 41 -->
+    <div class="product-card" data-category="kids" data-name="kids toddler kurta set cotton unisex">
+      <div class="product-image">
+        <div class="product-img-inner">🍼</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Kids · Toddler</p>
+        <h3 class="product-name">Tiny Kurta Set (0–2 yrs)</h3>
+        <p class="product-desc">Super-soft cotton, snap buttons. Unisex everyday kurta for toddlers.</p>
+        <div class="product-footer">
+          <span class="product-price">₹699</span>
+          <button class="add-btn" onclick="addToCart('Tiny Kurta Set', '₹699', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 42 -->
+    <div class="product-card" data-category="kids" data-name="kids girls abaya mini modest prayer">
+      <div class="product-image">
+        <div class="product-img-inner">🌺</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Kids Girls · Abaya</p>
+        <h3 class="product-name">Floral Mini Abaya</h3>
+        <p class="product-desc">Floral-print mini abaya. Modest everyday outfit for girls — age 4–12.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,199</span>
+          <button class="add-btn" onclick="addToCart('Floral Mini Abaya', '₹1,199', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 43 -->
+    <div class="product-card" data-category="kids" data-name="kids boys pathani suit casual daily">
+      <div class="product-image">
+        <div class="product-img-inner">🌾</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Kids Boys · Pathani</p>
+        <h3 class="product-name">Boys' Cotton Pathani Set</h3>
+        <p class="product-desc">Easy-wear pathani set for boys. Great for everyday and prayers.</p>
+        <div class="product-footer">
+          <span class="product-price">₹899</span>
+          <button class="add-btn" onclick="addToCart('Boys Cotton Pathani Set', '₹899', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 44 -->
+    <div class="product-card" data-category="kids" data-name="kids girls lehenga choli festive wedding birthday">
+      <div class="product-image">
+        <div class="product-img-inner">🎉</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Kids Girls · Lehenga</p>
+        <h3 class="product-name">Birthday Lehenga Choli</h3>
+        <p class="product-desc">Sparkly lehenga-choli set for parties and celebrations. Age 3–12.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,899</span>
+          <button class="add-btn" onclick="addToCart('Birthday Lehenga Choli', '₹1,899', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 45 -->
+    <div class="product-card" data-category="kids" data-name="kids boys topi cap embroidered prayer">
+      <div class="product-image">
+        <div class="product-img-inner">🌙</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Kids · Prayerwear</p>
+        <h3 class="product-name">Embroidered Kids' Topi</h3>
+        <p class="product-desc">Soft cotton topi for boys. Gentle on the head, sized for little ones.</p>
+        <div class="product-footer">
+          <span class="product-price">₹249</span>
+          <button class="add-btn" onclick="addToCart('Embroidered Kids Topi', '₹249', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ ACCESSORIES SECTION ══════════════ -->
+    <div class="category-divider" data-section="accessories">
+      <span class="cat-label">Accessories</span>
+      <span class="cat-label-line"></span>
+      <span class="cat-count">5 pieces</span>
+    </div>
+
+    <!-- PRODUCT 46 -->
+    <div class="product-card" data-category="accessories" data-name="accessories prayer mat janamaz premium">
+      <div class="product-image">
+        <div class="product-img-inner">🕌</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Accessories · Prayerwear</p>
+        <h3 class="product-name">Premium Janamaz Prayer Mat</h3>
+        <p class="product-desc">Plush velvet surface, compass print. Complete your prayer ensemble.</p>
+        <div class="product-footer">
+          <span class="product-price">₹599</span>
+          <button class="add-btn" onclick="addToCart('Premium Janamaz Prayer Mat', '₹599', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 47 -->
+    <div class="product-card" data-category="accessories" data-name="accessories tasbeeh prayer beads wood">
+      <div class="product-image">
+        <div class="product-img-inner">📿</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Accessories · Spiritual</p>
+        <h3 class="product-name">Sandalwood Tasbeeh Beads</h3>
+        <p class="product-desc">99-bead sandalwood tasbeeh. Fragrant, smooth, and handcrafted.</p>
+        <div class="product-footer">
+          <span class="product-price">₹449</span>
+          <button class="add-btn" onclick="addToCart('Sandalwood Tasbeeh Beads', '₹449', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 48 -->
+    <div class="product-card" data-category="accessories" data-name="accessories men kolhapuri leather sandals footwear">
+      <div class="product-image">
+        <div class="product-img-inner">👡</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Accessories · Footwear</p>
+        <h3 class="product-name">Leather Kolhapuri Sandals</h3>
+        <p class="product-desc">Handmade leather, traditional Kolhapuri style. For men and women.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,299</span>
+          <button class="add-btn" onclick="addToCart('Leather Kolhapuri Sandals', '₹1,299', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 49 -->
+    <div class="product-card" data-category="accessories" data-name="accessories women clutch bag silk embroidered">
+      <div class="product-image">
+        <div class="product-img-inner">👜</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Accessories · Bags</p>
+        <h3 class="product-name">Embroidered Silk Clutch</h3>
+        <p class="product-desc">Silk clutch with zardozi motif. The perfect festive handbag.</p>
+        <div class="product-footer">
+          <span class="product-price">₹1,099</span>
+          <button class="add-btn" onclick="addToCart('Embroidered Silk Clutch', '₹1,099', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 50 -->
+    <div class="product-card" data-category="accessories" data-name="accessories attar perfume oud fragrance">
+      <div class="product-image">
+        <div class="product-img-inner">🌹</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category-tag">Accessories · Fragrance</p>
+        <h3 class="product-name">Oud & Rose Attar</h3>
+        <p class="product-desc">Alcohol-free attar, 10ml roll-on. Deep, woody oud with rose notes.</p>
+        <div class="product-footer">
+          <span class="product-price">₹799</span>
+          <button class="add-btn" onclick="addToCart('Oud & Rose Attar', '₹799', event)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NO RESULTS STATE -->
+    <div class="no-results" id="noResults">
+      <div class="no-results-icon">🔍</div>
+      <h3>No products found</h3>
+      <p>Try a different search or browse all categories.</p>
+    </div>
+
+  </div><!-- end #product-grid -->
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">NAMAAZI<span>.</span></div>
+      <p class="footer-tagline">Clothing that honours your roots<br>and celebrates your today.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#">Men</a>
+      <a href="#">Women</a>
+      <a href="#">Kids</a>
+      <a href="#">Accessories</a>
+      <a href="#">New Arrivals</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="#">Size Guide</a>
+      <a href="#">Shipping Policy</a>
+      <a href="#">Returns & Exchange</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Brand</h4>
+      <a href="#">Our Story</a>
+      <a href="#">Sustainability</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 NAMAAZI All rights reserved</span>
+    <span>Made with care in India 🇮🇳</span>
+  </div>
+</footer>
+
+<script>
+ /* =========================================================
+   NAMAAZI E-COMMERCE CORE ENGINE (V1.0)
+   ========================================================= */
+
+// 1. STATE MANAGEMENT
+let cart = JSON.parse(localStorage.getItem('namaazi_cart')) || [];
+let currentFilter = 'all';
+
+// 2. INITIALIZE STORE
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartUI();
+    renderProducts(); // Generates UI from a data object instead of static HTML
+});
+
+// 3. CART SYSTEM
+function addToCart(productId, name, price) {
+    const numericPrice = parseInt(price.replace(/[^0-9]/g, ""));
+    const existingItem = cart.find(item => item.id === productId);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ id: productId, name, price: numericPrice, quantity: 1 });
+    }
+
+    saveCart();
+    showToast(`Added ${name} to cart`);
+}
+
+function saveCart() {
+    localStorage.setItem('namaazi_cart', JSON.stringify(cart));
+    updateCartUI();
+}
+
+function updateCartUI() {
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    
+    document.getElementById('cartCount').textContent = count;
+    
+    // Logic for Shipping Policy
+    const shippingThreshold = 1499;
+    const isFreeShipping = subtotal >= shippingThreshold;
+    
+    console.log(`Subtotal: ₹${subtotal} | Free Shipping: ${isFreeShipping}`);
+}
+
+// 4. ADVANCED FILTERING & SEARCH
+function filterProducts(category) {
+    currentFilter = category;
+    const cards = document.querySelectorAll('.product-card');
+    const dividers = document.querySelectorAll('.category-divider');
+    const searchVal = document.getElementById('searchInput').value.toLowerCase();
+
+    // Toggle Active Classes
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === category));
+    
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        const matchCat = category === 'all' || card.dataset.category === category;
+        const matchSearch = card.dataset.name.toLowerCase().includes(searchVal);
+        const show = matchCat && matchSearch;
+        
+        card.classList.toggle('hidden', !show);
+        if (show) visibleCount++;
+    });
+
+    // Hide dividers if specific category is selected
+    dividers.forEach(div => div.style.display = (category === 'all' || div.dataset.section === category) ? '' : 'none');
+    
+    document.getElementById('resultsCount').textContent = `${visibleCount} items found`;
+}
+
+function showCart() {
+    if(cart.length === 0) {
+        showToast("Your cart is empty");
+    } else {
+        // Redirect to the functional checkout page you just created
+        window.location.href = "checkout.html";
+    }
+}
+</script>
+</body>
+</html>

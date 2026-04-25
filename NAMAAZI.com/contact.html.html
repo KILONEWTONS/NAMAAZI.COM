@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — NAMAAZI</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600&family=Playfair+Display:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --black: #0a0a0a; --white: #ffffff; --sand: #f2ede4; --clay: #c8a882; --border: #e8e3db; --font-body: 'DM Sans', sans-serif; }
+  body { font-family: var(--font-body); background: var(--white); color: var(--black); margin: 0; line-height: 1.6; }
+  .nav-simple { padding: 20px 48px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: 'Hanken Grotesk', sans-serif; font-weight: 600; font-size: 24px; text-decoration: none; color: var(--black); }
+  .contact-container { max-width: 1100px; margin: 60px auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+  h1 { font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 24px; }
+  .contact-method { margin-bottom: 32px; }
+  .contact-method h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--clay); margin-bottom: 8px; }
+  .contact-method p { font-size: 18px; margin: 0; font-weight: 500; }
+  .contact-form { background: #fafafa; padding: 40px; border-radius: 4px; }
+  .input-group { margin-bottom: 20px; }
+  label { display: block; font-size: 13px; margin-bottom: 8px; font-weight: 500; }
+  input, textarea { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 2px; font-family: var(--font-body); box-sizing: border-box; }
+  .submit-btn { background: var(--black); color: var(--white); width: 100%; padding: 16px; border: none; cursor: pointer; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; }
+  @media (max-width: 768px) { .contact-container { grid-template-columns: 1fr; padding: 0 24px; } }
+</style>
+</head>
+<body>
+
+<nav class="nav-simple">
+  <a href="index.html" class="logo">NAMAAZI<span>.</span></a>
+  <a href="index.html" style="text-decoration:none; color:var(--black); font-size:13px; font-weight:500; text-transform:uppercase; letter-spacing:1px;">← Back to Store</a>
+</nav>
+
+<div class="contact-container">
+  <div>
+    <h1>Get in Touch</h1>
+    <p>Whether you have a question about our collection, shipping, or returns, we're here to help.</p>
+    
+    <div class="contact-method">
+      <h3>Email Us</h3>
+      <p>support@namaazi.com</p>
+    </div>
+    
+    <div class="contact-method">
+      <h3>WhatsApp Support</h3>
+      <p>+91 [Your Number]</p>
+    </div>
+    
+    <div class="contact-method">
+      <h3>Response Time</h3>
+      <p>Within 24-48 Hours</p>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <form action="mailto:support@namaazi.com" method="post" enctype="text/plain">
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" name="name" required>
+      </div>
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="input-group">
+        <label>Order Number (Optional)</label>
+        <input type="text" name="order_id" placeholder="NMZ-XXXXX">
+      </div>
+      <div class="input-group">
+        <label>Message</label>
+        <textarea name="message" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — NAMAAZI</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600&family=Playfair+Display:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --black: #0a0a0a; --white: #ffffff; --sand: #f2ede4; --clay: #c8a882; --border: #e8e3db; --font-body: 'DM Sans', sans-serif; }
+  body { font-family: var(--font-body); background: #fafafa; color: var(--black); margin: 0; padding: 0; }
+  .checkout-container { max-width: 1100px; margin: 40px auto; display: grid; grid-template-columns: 1fr 400px; gap: 40px; padding: 0 20px; }
+  .checkout-form, .order-summary { background: var(--white); padding: 32px; border: 1px solid var(--border); border-radius: 4px; }
+  h2 { font-family: 'Playfair Display', serif; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+  .input-group { margin-bottom: 16px; }
+  label { display: block; font-size: 13px; margin-bottom: 6px; font-weight: 500; }
+  input, select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 2px; font-family: var(--font-body); }
+  .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; }
+  .total-row { border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px; font-weight: 600; font-size: 18px; }
+  .pay-btn { background: var(--black); color: var(--white); width: 100%; padding: 16px; border: none; cursor: pointer; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 20px; }
+  .pay-btn:hover { background: #333; }
+</style>
+</head>
+<body>
+
+<div class="checkout-container">
+  <div class="checkout-form">
+    <h2>Shipping Details</h2>
+    <div class="input-group">
+      <label>Full Name</label>
+      <input type="text" id="custName" placeholder="Sameer Ahmed">
+    </div>
+    <div class="input-group">
+      <label>Shipping Address</label>
+      <input type="text" id="custAddr" placeholder="Street, Apartment, etc.">
+    </div>
+    <div class="input-group">
+      <label>City / Region</label>
+      <select id="regionSelect" onchange="calculateFinalTotal()">
+        <option value="hyderabad">Hyderabad (Local)</option>
+        <option value="metro">Metro Cities (Delhi, Mumbai, etc.)</option>
+        <option value="other">Rest of India</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="order-summary">
+    <h2>Your Order</h2>
+    <div id="cartItemsList"></div>
+    <div class="summary-row"><span>Subtotal</span><span id="subtotalVal">₹0</span></div>
+    <div class="summary-row"><span>Shipping</span><span id="shippingVal">₹0</span></div>
+    <div class="summary-row total-row"><span>Total (Incl. GST)</span><span id="totalVal">₹0</span></div>
+    <button class="pay-btn" onclick="initiatePayment()">Pay Now</button>
+  </div>
+</div>
+
+<script>
+  function calculateFinalTotal() {
+    const cart = JSON.parse(localStorage.getItem('namaazi_cart')) || [];
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const region = document.getElementById('regionSelect').value;
+    
+    // Policy-driven shipping rates
+    let shipping = 0;
+    if (subtotal < 1499) {
+      if (region === 'hyderabad') shipping = 49;
+      else if (region === 'metro') shipping = 79;
+      else shipping = 99;
+    }
+
+    document.getElementById('subtotalVal').textContent = `₹${subtotal}`;
+    document.getElementById('shippingVal').textContent = shipping === 0 ? "FREE" : `₹${shipping}`;
+    document.getElementById('totalVal').textContent = `₹${subtotal + shipping}`;
+  }
+
+  function initiatePayment() {
+    // In the future, this is where you insert Razorpay logic.
+    // For now, we simulate a successful payment by redirecting.
+    window.location.href = "order-success.html";
+}
+
+  window.onload = calculateFinalTotal;
+</script>
+</body>
+</html>

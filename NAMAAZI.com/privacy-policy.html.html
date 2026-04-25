@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — NAMAAZI</title>
+<meta name="description" content="NAMAAZI's Privacy Policy. Learn how we collect, use, and protect your personal information when you shop with us.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.namaazi.com/privacy-policy">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600&family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:#0a0a0a;--white:#ffffff;--off-white:#fafaf8;--sand:#f2ede4;
+    --clay:#c8a882;--clay-dark:#9a7a5a;--charcoal:#3a3530;--muted:#888580;
+    --border:#e8e3db;--nav-height:72px;
+    --font-logo:'Hanken Grotesk',sans-serif;
+    --font-display:'Playfair Display',Georgia,serif;
+    --font-body:'DM Sans',system-ui,sans-serif;
+    --radius:2px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);background:var(--white);color:var(--black);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  a{text-decoration:none;color:inherit;}
+  button{font-family:var(--font-body);cursor:pointer;border:none;background:none;}
+
+  /* NAV */
+  .announce{background:var(--black);color:var(--white);text-align:center;padding:10px 20px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;}
+  nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:var(--nav-height);display:flex;align-items:center;padding:0 48px;gap:32px;}
+  .nav-logo{font-family:var(--font-logo);font-weight:600;font-size:28px;letter-spacing:.06em;color:var(--black);margin-right:auto;}
+  .nav-logo span{color:var(--clay);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:var(--charcoal);transition:color .2s;}
+  .nav-links a:hover{color:var(--clay);}
+  .nav-back{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;background:var(--black);color:var(--white);padding:10px 22px;border-radius:var(--radius);transition:background .2s;}
+  .nav-back:hover{background:var(--clay-dark);}
+
+  /* HERO BANNER */
+  .page-hero{background:var(--sand);padding:64px 48px 56px;border-bottom:1px solid var(--border);}
+  .page-breadcrumb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+  .page-breadcrumb span{color:var(--clay);}
+  .page-title{font-family:var(--font-display);font-size:48px;font-weight:600;line-height:1.1;color:var(--black);margin-bottom:12px;}
+  .page-meta{font-size:13px;color:var(--muted);}
+
+  /* LAYOUT */
+  .page-layout{display:grid;grid-template-columns:240px 1fr;gap:64px;max-width:1100px;margin:0 auto;padding:64px 48px 100px;}
+  .toc{position:sticky;top:calc(var(--nav-height)+24px);height:fit-content;}
+  .toc-title{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:16px;}
+  .toc-list{list-style:none;display:flex;flex-direction:column;gap:2px;}
+  .toc-list a{font-size:13px;color:var(--charcoal);padding:7px 12px;border-left:2px solid var(--border);display:block;transition:all .2s;line-height:1.3;}
+  .toc-list a:hover,.toc-list a.active{color:var(--black);border-left-color:var(--clay);padding-left:14px;}
+
+  /* CONTENT */
+  .policy-content{max-width:680px;}
+  .policy-section{margin-bottom:48px;scroll-margin-top:calc(var(--nav-height)+32px);}
+  .policy-section h2{font-family:var(--font-display);font-size:24px;font-weight:500;color:var(--black);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+  .policy-section p{font-size:15px;color:var(--charcoal);margin-bottom:14px;line-height:1.75;}
+  .policy-section ul{padding-left:20px;margin-bottom:14px;}
+  .policy-section ul li{font-size:15px;color:var(--charcoal);margin-bottom:8px;line-height:1.65;}
+  .policy-section ul li::marker{color:var(--clay);}
+  .highlight-box{background:var(--sand);border-left:3px solid var(--clay);padding:18px 20px;border-radius:0 var(--radius) var(--radius) 0;margin:20px 0;}
+  .highlight-box p{margin:0;font-size:14px;color:var(--charcoal);}
+  .contact-card{background:var(--off-white);border:1px solid var(--border);border-radius:4px;padding:24px;margin-top:16px;}
+  .contact-card p{margin:0 0 6px;font-size:14px;color:var(--charcoal);}
+  .contact-card p:last-child{margin:0;}
+  .contact-card strong{color:var(--black);}
+
+  /* FOOTER */
+  footer{background:var(--black);color:var(--white);padding:48px 48px 28px;}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+  .footer-logo{font-family:var(--font-logo);font-weight:600;font-size:24px;letter-spacing:.06em;margin-bottom:12px;}
+  .footer-logo span{color:var(--clay);}
+  .footer-tagline{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6;}
+  .footer-col h4{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:14px;font-weight:500;}
+  .footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.65);margin-bottom:9px;transition:color .2s;}
+  .footer-col a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.35);}
+
+  @media(max-width:900px){
+    nav{padding:0 24px;} .page-hero{padding:48px 24px 40px;} .page-title{font-size:36px;}
+    .page-layout{grid-template-columns:1fr;gap:40px;padding:40px 24px 80px;}
+    .toc{position:static;} footer{padding:40px 24px 24px;} .footer-top{grid-template-columns:1fr 1fr;gap:28px;}
+  }
+  @media(max-width:600px){.nav-links{display:none;}.footer-top{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;gap:6px;}}
+</style>
+</head>
+<body>
+
+<div class="announce">Free Shipping on Orders Above ₹1499 &nbsp;|&nbsp; Use Code NAMAAZI10 for 10% Off</div>
+
+<nav>
+  <div class="nav-logo"><a href="index.html">NAMAAZI<span>.</span></a></div>
+  <div class="nav-links">
+    <a href="index.html">Shop</a>
+    <a href="index.html#men">Men</a>
+    <a href="index.html#women">Women</a>
+    <a href="index.html#kids">Kids</a>
+  </div>
+  <a class="nav-back" href="index.html">← Back to Store</a>
+</nav>
+
+<div class="page-hero">
+  <p class="page-breadcrumb">NAMAAZI <span>/ Privacy Policy</span></p>
+  <h1 class="page-title">Privacy Policy</h1>
+  <p class="page-meta">Last updated: 25 April 2025 &nbsp;·&nbsp; Effective immediately</p>
+</div>
+
+<div class="page-layout">
+
+  <!-- TABLE OF CONTENTS -->
+  <aside class="toc">
+    <p class="toc-title">On this page</p>
+    <ul class="toc-list">
+      <li><a href="#introduction">1. Introduction</a></li>
+      <li><a href="#data-collect">2. Data We Collect</a></li>
+      <li><a href="#how-use">3. How We Use Your Data</a></li>
+      <li><a href="#sharing">4. Sharing Your Data</a></li>
+      <li><a href="#cookies">5. Cookies & Tracking</a></li>
+      <li><a href="#storage">6. Data Storage & Security</a></li>
+      <li><a href="#rights">7. Your Rights</a></li>
+      <li><a href="#children">8. Children's Privacy</a></li>
+      <li><a href="#changes">9. Policy Changes</a></li>
+      <li><a href="#contact">10. Contact Us</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <article class="policy-content">
+
+    <div class="highlight-box">
+      <p>Your privacy matters to us. NAMAAZI is committed to handling your personal data responsibly and transparently. This policy explains exactly what we collect, why, and how we protect it.</p>
+    </div>
+
+    <section class="policy-section" id="introduction">
+      <h2>1. Introduction</h2>
+      <p>NAMAAZI ("we", "our", "us") operates the website namaazi.com and is responsible for your personal data as a data controller under applicable Indian data protection laws, including the Information Technology Act, 2000 and the Digital Personal Data Protection Act, 2023 (DPDPA).</p>
+      <p>By visiting our website or placing an order, you agree to this Privacy Policy. Please read it carefully before using our services.</p>
+    </section>
+
+    <section class="policy-section" id="data-collect">
+      <h2>2. Data We Collect</h2>
+      <p>We collect information in the following ways:</p>
+      <ul>
+        <li><strong>Account & Order Information:</strong> Name, email address, phone number, delivery address, and order history when you create an account or place an order.</li>
+        <li><strong>Payment Information:</strong> We do not store card numbers. Payment is processed securely by our payment gateway partners (Razorpay, UPI). We only receive a transaction confirmation.</li>
+        <li><strong>Device & Usage Data:</strong> IP address, browser type, pages visited, time spent on site, and referral URLs collected automatically via cookies and analytics tools.</li>
+        <li><strong>Communications:</strong> Messages you send us via email, WhatsApp, or our contact form.</li>
+        <li><strong>User-Generated Content:</strong> Reviews or testimonials you voluntarily submit.</li>
+      </ul>
+    </section>
+
+    <section class="policy-section" id="how-use">
+      <h2>3. How We Use Your Data</h2>
+      <p>We use your personal data only for the purposes listed below:</p>
+      <ul>
+        <li>To process and fulfil your orders, including shipping and delivery.</li>
+        <li>To send order confirmations, invoices, and shipping updates.</li>
+        <li>To respond to customer service enquiries and complaints.</li>
+        <li>To send promotional emails and SMS — only if you have opted in. You can unsubscribe any time.</li>
+        <li>To improve our website, products, and services using aggregated analytics.</li>
+        <li>To comply with legal obligations such as tax records and fraud prevention.</li>
+        <li>To personalise your shopping experience with product recommendations.</li>
+      </ul>
+    </section>
+
+    <section class="policy-section" id="sharing">
+      <h2>4. Sharing Your Data</h2>
+      <p>We do not sell, rent, or trade your personal data. We share it only in the following limited circumstances:</p>
+      <ul>
+        <li><strong>Logistics Partners:</strong> Your name, phone, and address are shared with our courier partners (Delhivery, BlueDart, etc.) solely to fulfil your delivery.</li>
+        <li><strong>Payment Processors:</strong> Payment data is handled directly by Razorpay or UPI providers under their own privacy policies.</li>
+        <li><strong>Analytics Providers:</strong> Anonymised usage data is shared with Google Analytics to understand website performance.</li>
+        <li><strong>Legal Requirements:</strong> We may disclose data if required by law, court order, or government authority.</li>
+      </ul>
+      <p>All third-party partners are contractually bound to protect your data and use it only as instructed by us.</p>
+    </section>
+
+    <section class="policy-section" id="cookies">
+      <h2>5. Cookies & Tracking</h2>
+      <p>We use cookies to make your experience smooth. Cookies are small text files stored on your device. We use:</p>
+      <ul>
+        <li><strong>Essential Cookies:</strong> Required for the website to function (e.g., shopping cart, login session). Cannot be disabled.</li>
+        <li><strong>Analytics Cookies:</strong> Help us understand how visitors use the site. Can be disabled.</li>
+        <li><strong>Marketing Cookies:</strong> Used for retargeting ads on Facebook/Instagram. Can be opted out via your browser settings.</li>
+      </ul>
+      <p>You can control or delete cookies via your browser settings. Disabling non-essential cookies will not affect your ability to shop with us.</p>
+    </section>
+
+    <section class="policy-section" id="storage">
+      <h2>6. Data Storage & Security</h2>
+      <p>Your data is stored on secure servers located in India. We use industry-standard security measures including:</p>
+      <ul>
+        <li>SSL/TLS encryption for all data transmitted to and from our website.</li>
+        <li>Secure access controls and password-protected systems for internal staff.</li>
+        <li>Regular security audits and vulnerability assessments.</li>
+        <li>Automatic data deletion schedules — order data is retained for 7 years for tax compliance; marketing data is deleted after 2 years of inactivity.</li>
+      </ul>
+      <p>While we take every precaution, no system is 100% secure. In the event of a data breach, we will notify affected users within 72 hours as required by law.</p>
+    </section>
+
+    <section class="policy-section" id="rights">
+      <h2>7. Your Rights</h2>
+      <p>Under the Digital Personal Data Protection Act, 2023, you have the following rights:</p>
+      <ul>
+        <li><strong>Right to Access:</strong> Request a copy of the personal data we hold about you.</li>
+        <li><strong>Right to Correction:</strong> Ask us to correct inaccurate or incomplete data.</li>
+        <li><strong>Right to Erasure:</strong> Request deletion of your personal data, subject to legal retention requirements.</li>
+        <li><strong>Right to Withdraw Consent:</strong> Opt out of marketing communications at any time.</li>
+        <li><strong>Right to Grievance Redressal:</strong> Lodge a complaint with our Data Protection Officer.</li>
+      </ul>
+      <p>To exercise any right, email us at <strong>privacy@namaazi.com</strong>. We will respond within 30 days.</p>
+    </section>
+
+    <section class="policy-section" id="children">
+      <h2>8. Children's Privacy</h2>
+      <p>Our website is not directed at children under the age of 13. We do not knowingly collect personal data from children. If you believe a child has provided us with their personal data, please contact us immediately and we will delete it.</p>
+    </section>
+
+    <section class="policy-section" id="changes">
+      <h2>9. Policy Changes</h2>
+      <p>We may update this Privacy Policy periodically to reflect changes in our practices or applicable law. When we do, we will update the "Last Updated" date at the top of this page. For significant changes, we will notify you by email or a prominent banner on our website.</p>
+      <p>Your continued use of our website after any changes constitutes your acceptance of the updated policy.</p>
+    </section>
+
+    <section class="policy-section" id="contact">
+      <h2>10. Contact Us</h2>
+      <p>For any privacy-related questions, concerns, or requests, please reach out to us:</p>
+      <div class="contact-card">
+        <p><strong>NAMAAZI — Data Protection Officer</strong></p>
+        <p>📧 <strong>Email:</strong> privacy@namaazi.com</p>
+        <p>📞 <strong>Phone:</strong> +91 XXXXX XXXXX</p>
+        <p>📍 <strong>Address:</strong> NAMAAZI, [Your Business Address], Hyderabad, Telangana, India</p>
+        <p>🕐 <strong>Response Time:</strong> Within 30 business days</p>
+      </div>
+    </section>
+
+  </article>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">NAMAAZI<span>.</span></div>
+      <p class="footer-tagline">Clothing that honours your roots<br>and celebrates your today.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="index.html">Men</a><a href="index.html">Women</a><a href="index.html">Kids</a><a href="index.html">Accessories</a>
+    </div>
+    <div class="footer-col">
+      <h4>Policies</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="shipping-policy.html">Shipping Policy</a>
+      <a href="returns-exchange.html">Returns & Exchange</a>
+      <a href="terms-conditions.html">Terms & Conditions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">Our Story</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="sitemap.html">Sitemap</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 NAMAAZI All rights reserved.</span>
+    <span>Made with care in India 🇮🇳</span>
+  </div>
+</footer>
+
+<script>
+  // Active TOC highlighting on scroll
+  const sections = document.querySelectorAll('.policy-section');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector('.toc-list a[href="#' + e.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
